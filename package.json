@@ -1,0 +1,19 @@
+{
+  "name": "allure-to-ctrf",
+  "version": "0.0.0",
+  "description": "Convert Allure reports to CTRF JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beyond-danube/allure-to-ctrf.git"
+  },
+  "author": "Oleksii Siniavtsev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/beyond-danube/allure-to-ctrf/issues"
+  },
+  "homepage": "https://github.com/beyond-danube/allure-to-ctrf#readme"
+}
