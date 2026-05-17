@@ -5,6 +5,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { AllureTestResult } from './model/allure'
 import { converAllureTestToCtrfTest, createReport } from './convert/convertor'
+import { CliOptions } from './model/cli-options'
 
 const program = new Command()
 
@@ -12,11 +13,11 @@ program
   .name('allure-to-ctrf')
   .description('Convert Allure reports to CTRF JSON')
   .argument('<allure-results-folder-path>', 'path/to/allure/results/folder')
-  .option('-o, --output-folder', 'path/to/ctrf/output', 'crtf-repost.json')
-  .option('-f, --output-file', 'crtf-repost.json', 'crtf-repost.json')
-  .action((allureFolder, options) => {
+  .option('-o, --output-folder <folder>', 'path/to/ctrf/output', 'ctrf')
+  .option('-f, --output-file <file>', 'crtf-repost.json', 'crtf-report.json')
+  .action((allureFolder, options: CliOptions) => {
     if (!fs.existsSync(allureFolder)) {
-      console.log('Path does not exist')
+      console.log('Allure path does not exist')
       return
     }
 
@@ -36,11 +37,8 @@ program
 
     const report = createReport(ctrfTestResults)
 
-    if (!fs.existsSync('ctrf')) {
-      fs.mkdirSync('ctrf')
-    }
-
-    fs.writeFileSync('ctrf/ctrf-report.json', JSON.stringify(report, null, '\t'))
+    fs.mkdirSync(options.outputFolder, { recursive: true })
+    fs.writeFileSync(path.join(options.outputFolder, options.outputFile), JSON.stringify(report, null, '\t'))
   })
 
 program.parse()
