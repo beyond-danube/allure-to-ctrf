@@ -1,5 +1,5 @@
-import { CTRFReport, Test, TestStatus } from 'ctrf'
-import { AllureTestResult, AllureTestStatus } from '../model/allure'
+import { CTRFReport, Step, Test, TestStatus } from 'ctrf'
+import { AllureTestResult, AllureTestStatus, AllureTestStep } from '../model/allure'
 import { listAllureResultFiles } from './validation'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -12,6 +12,17 @@ const statusMap = new Map<AllureTestStatus, TestStatus>([
 ])
 
 function converAllureTestToCtrfTest(allureTest: AllureTestResult): Test {
+  const mapSteps = (allureTestSteps: AllureTestStep[]): Step[] => {
+    return [...allureTestSteps].map(step => {
+      const result: Step = {
+        name: step.name,
+        status: statusMap.get(allureTest.status) ?? 'other'
+      }
+
+      return result
+    })
+  }
+
   const result: Test = {
     id: allureTest.uuid,
     name: allureTest.name,
@@ -19,6 +30,7 @@ function converAllureTestToCtrfTest(allureTest: AllureTestResult): Test {
     rawStatus: allureTest.status,
     start: allureTest.start,
     stop: allureTest.stop,
+    steps: mapSteps(allureTest.steps),
     duration: allureTest.stop - allureTest.start
   }
 

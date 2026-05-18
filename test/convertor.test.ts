@@ -35,6 +35,23 @@ describe('status mapping', () => {
   })
 })
 
+describe('step mapping', () => {
+  it('maps top-level steps for 6d72a3f1-34dc-458b-927a-cc800f5ddc43-result.json', () => {
+    const tests = convertAllureResultsFromFolder(FIXTURE_DIR)
+    const test = tests.find(t => t.id === '6d72a3f1-34dc-458b-927a-cc800f5ddc43')
+
+    expect(test?.steps).toHaveLength(4)
+  })
+
+  it('matches step count in createReport output', () => {
+    const tests = convertAllureResultsFromFolder(FIXTURE_DIR)
+    const report = createReport(tests)
+    const reported = report.results.tests.find(t => t.id === '6d72a3f1-34dc-458b-927a-cc800f5ddc43')
+
+    expect(reported?.steps).toHaveLength(4)
+  })
+})
+
 describe('createReport', () => {
   it('summarises counts that match the converted tests', () => {
     const tests = convertAllureResultsFromFolder(FIXTURE_DIR)
