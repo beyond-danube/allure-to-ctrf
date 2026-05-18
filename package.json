@@ -6,10 +6,10 @@
   "scripts": {
     "build": "tsc",
     "prepare": "tsc",
-    "test": "test"
+    "test": "jest"
   },
   "bin": {
-    "greet": "./dist/cli.js"
+    "allure-to-ctrf": "./dist/cli.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,11 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.8.0",
-    "prettier": "^3.8.3"
+    "jest": "^30.4.2",
+    "jest-ctrf-json-reporter": "^0.0.11",
+    "prettier": "^3.8.3",
+    "ts-jest": "^29.4.9"
   }
 }

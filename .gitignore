@@ -1,5 +1,7 @@
 # CTRF
 ctrf/
+jest-ctrf/
+ctrf-custom/
 
 # Logs
 logs

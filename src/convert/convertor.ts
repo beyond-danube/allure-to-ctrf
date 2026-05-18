@@ -1,5 +1,6 @@
 import { CTRFReport, Test, TestStatus } from 'ctrf'
 import { AllureTestResult, AllureTestStatus } from '../model/allure'
+import { listAllureResultFiles } from './validation'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -25,15 +26,7 @@ function converAllureTestToCtrfTest(allureTest: AllureTestResult): Test {
 }
 
 export function convertAllureResultsFromFolder(allureFolder: string): Test[] {
-  if (!fs.existsSync(allureFolder)) {
-    throw new Error('Allure path does not exist')
-  }
-
-  const allureResultsFiles = fs.readdirSync(allureFolder).filter(file => file.endsWith('result.json'))
-
-  if (allureResultsFiles.length === 0) {
-    throw new Error('Allure results not found on path')
-  }
+  const allureResultsFiles = listAllureResultFiles(allureFolder)
 
   const tests: Test[] = allureResultsFiles.map(allureTestFile => {
     const allureTest: AllureTestResult = JSON.parse(fs.readFileSync(path.join(allureFolder, allureTestFile)).toString())
@@ -45,7 +38,7 @@ export function convertAllureResultsFromFolder(allureFolder: string): Test[] {
 
 export function createReport(tests: Test[]): CTRFReport {
   const countTests = (status: TestStatus) => tests.filter(test => test.status === status).length
-  const sortedTests = tests.sort(test => test.start!)
+  const sortedTests = [...tests].sort((a, b) => a.start! - b.start!)
 
   const result: CTRFReport = {
     reportFormat: 'CTRF',
