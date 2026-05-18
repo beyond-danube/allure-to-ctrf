@@ -10,7 +10,7 @@ program
   .description('Convert Allure reports to CTRF JSON')
   .argument('<allure-results-folder-path>', 'path/to/allure/results/folder')
   .option('-o, --output-folder <folder>', 'path/to/ctrf/output', 'ctrf')
-  .option('-f, --output-file <file>', 'crtf-repost.json', 'crtf-report.json')
+  .option('-f, --output-file <file>', 'ctrf-repost.json', 'ctrf-report.json')
   .action((allureFolder, options: CliOptions) => {
     try {
       const ctrfTestResults = convertAllureResultsFromFolder(allureFolder)

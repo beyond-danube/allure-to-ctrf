@@ -35,7 +35,7 @@ describe('allure-to-ctrf CLI (end-to-end)', () => {
     expect(result.status).toBe(0)
     expect(result.stderr).toBe('')
 
-    const reportPath = path.join(tmpOut, 'ctrf', 'crtf-report.json')
+    const reportPath = path.join(tmpOut, 'ctrf', 'ctrf-report.json')
     expect(fs.existsSync(reportPath)).toBe(true)
 
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'))
@@ -44,10 +44,7 @@ describe('allure-to-ctrf CLI (end-to-end)', () => {
   })
 
   it('respects -o (custom folder) and -f (custom file) options', () => {
-    const result = runCli(
-      [FIXTURE_DIR, '-o', CUSTOM_FOLDER, '-f', CUSTOM_FILE],
-      tmpOut
-    )
+    const result = runCli([FIXTURE_DIR, '-o', CUSTOM_FOLDER, '-f', CUSTOM_FILE], tmpOut)
 
     expect(result.status).toBe(0)
     expect(result.stderr).toBe('')
@@ -56,7 +53,7 @@ describe('allure-to-ctrf CLI (end-to-end)', () => {
     expect(fs.existsSync(customPath)).toBe(true)
 
     expect(fs.existsSync(path.join(tmpOut, 'ctrf'))).toBe(false)
-    expect(fs.existsSync(path.join(tmpOut, CUSTOM_FOLDER, 'crtf-report.json'))).toBe(false)
+    expect(fs.existsSync(path.join(tmpOut, CUSTOM_FOLDER, 'ctrf-report.json'))).toBe(false)
 
     const report = JSON.parse(fs.readFileSync(customPath, 'utf8'))
     expect(report.results.summary).toMatchObject(EXPECTED_COUNTS)
