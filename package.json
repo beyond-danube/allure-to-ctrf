@@ -1,6 +1,6 @@
 {
   "name": "allure-to-ctrf",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Convert Allure reports to CTRF JSON",
   "main": "index.js",
   "scripts": {
