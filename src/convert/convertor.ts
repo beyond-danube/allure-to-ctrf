@@ -45,7 +45,7 @@ export function convertAllureResultsFromFolder(allureFolder: string): Test[] {
 
 export function createReport(tests: Test[]): CTRFReport {
   const countTests = (status: TestStatus) => tests.filter(test => test.status === status).length
-  const sortedTests = tests.sort(test => test.start!)
+  const sortedTests = [...tests].sort((a, b) => a.start! - b.start!)
 
   const result: CTRFReport = {
     reportFormat: 'CTRF',
