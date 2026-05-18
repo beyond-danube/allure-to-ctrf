@@ -6,10 +6,10 @@
   "scripts": {
     "build": "tsc",
     "prepare": "tsc",
-    "test": "test"
+    "test": "jest"
   },
   "bin": {
-    "greet": "./dist/cli.js"
+    "allure-to-ctrf": "./dist/cli.js"
   },
   "repository": {
     "type": "git",
