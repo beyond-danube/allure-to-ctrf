@@ -1,6 +1,6 @@
-# Convert Allure JSON to CTRF JSON
+# Convert Allure Report to CTRF JSON
 
-An Allure JSON test results converter to create test reports that follow the CTRF standard.
+An Allure Report test results converter to create test reports that follow the CTRF standard.
 
 [Common Test Report Format](https://ctrf.io) ensures the generation of uniform JSON test reports, independent of programming languages or test framework in use.
 
@@ -82,7 +82,7 @@ npx allure-to-ctrf path/to/allure-results
 
 ## Examples
 
-Convert Allure JSON reports to the default CTRF report location (ctrf/ctrf-report.json):
+Convert Allure Report to the default CTRF report location (ctrf/ctrf-report.json):
 
 ```sh
 npx allure-to-ctrf path/to/allure-results
@@ -90,7 +90,7 @@ npx allure-to-ctrf path/to/allure-results
 
 ### Specify Output Folder and File
 
-Convert Allure JSON reports to a specified output file:
+Convert Allure Report to a specified output file:
 
 ```sh
 npx allure-to-ctrf path/to/allure-results -o report -f combined-report.json
