@@ -15,6 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/beyond-danube/allure-to-ctrf.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Oleksii Siniavtsev",
   "license": "MIT",
   "bugs": {
