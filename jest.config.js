@@ -4,7 +4,6 @@ module.exports = {
     testEnvironment: 'node',
     roots: ['<rootDir>/src', '<rootDir>/test'],
     testMatch: [
-        '**/test/**/*.ts',
         '**/?(*.)+(spec|test).ts',
     ],
     moduleFileExtensions: ['ts', 'js', 'json'],
@@ -13,6 +12,8 @@ module.exports = {
     },
     reporters: [
         'default',
-        ['jest-ctrf-json-reporter', {}],
+        ['jest-ctrf-json-reporter', {
+            outputDir: 'jest-ctrf'
+        }],
 ],
 };
