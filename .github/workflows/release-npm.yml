@@ -1,5 +1,8 @@
 name: Publish to npm
 
+permissions:
+  id-token: write
+
 on:
   release:
     types: [published]
@@ -11,8 +14,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          registry-url: "https://registry.npmjs.org"
+          node-version: 24
+          always-auth: true
+          registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run build
       - run: npm publish
