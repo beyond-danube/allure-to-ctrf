@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { convertAllureResultsFromFolder, createReport } from '../src/convert/convertor'
-import { listAllureResultFiles } from '../src/convert/validation'
+import { listAllureResultFiles } from '../src/convert/convertor'
 import { EXPECTED_COUNTS, FIXTURE_DIR, RESULT_FILE_COUNT } from './helpers/expected'
 
 describe('convertAllureResultsFromFolder', () => {

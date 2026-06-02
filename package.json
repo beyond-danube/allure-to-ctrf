@@ -2,7 +2,8 @@
   "name": "allure-to-ctrf",
   "version": "0.0.3",
   "description": "Convert Allure reports to CTRF JSON",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "tsc",
@@ -31,7 +32,6 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.8.0",
     "jest": "^30.4.2",
     "jest-ctrf-json-reporter": "^0.0.11",
     "prettier": "^3.8.3",
