@@ -1,8 +1,8 @@
 import { CTRFReport, Step, Test, TestStatus } from 'ctrf'
 import { AllureTestResult, AllureTestStatus, AllureTestStep } from '../model/allure'
-import { listAllureResultFiles } from './validation'
 import fs from 'node:fs'
 import path from 'node:path'
+import { AllureConvertionOptions, defaultOptions } from '../model/options'
 
 const statusMap = new Map<AllureTestStatus, TestStatus>([
   ['passed', 'passed'],
@@ -35,6 +35,20 @@ function converAllureTestToCtrfTest(allureTest: AllureTestResult): Test {
   }
 
   return result
+}
+
+export function listAllureResultFiles(folderPath: string): string[] {
+  if (!fs.existsSync(folderPath)) {
+    throw new Error('Allure path does not exist')
+  }
+
+  const files = fs.readdirSync(folderPath).filter(file => file.endsWith('result.json'))
+
+  if (files.length === 0) {
+    throw new Error('Allure results not found on path')
+  }
+
+  return files
 }
 
 export function convertAllureResultsFromFolder(allureFolder: string): Test[] {
@@ -78,4 +92,11 @@ export function createReport(tests: Test[]): CTRFReport {
 export function writeReport(report: CTRFReport, outputFolder: string, outputFile: string) {
   fs.mkdirSync(outputFolder, { recursive: true })
   fs.writeFileSync(path.join(outputFolder, outputFile), JSON.stringify(report, null, '\t'))
+}
+
+export function writeFromAllureFolderToCtrf(allureFolder: string, options: Partial<AllureConvertionOptions> = {}): void {
+  const { outputFolder, outputFile } = { ...defaultOptions, ...options }
+  const ctrfTests = convertAllureResultsFromFolder(allureFolder)
+  const report = createReport(ctrfTests)
+  writeReport(report, outputFolder, outputFile)
 }
