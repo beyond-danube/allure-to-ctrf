@@ -102,7 +102,7 @@ npm i allure-to-ctrf
 ```
 
 ```typescript
-import { writeFromAllureFolderToCtrf } from 'allure-to-ctrf'
+import writeFromAllureFolderToCtrf from 'allure-to-ctrf'
 
 writeFromAllureFolderToCtrf('path/to/allure/folder)
 ```
