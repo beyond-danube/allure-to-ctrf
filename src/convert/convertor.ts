@@ -94,10 +94,7 @@ export function writeReport(report: CTRFReport, outputFolder: string, outputFile
   fs.writeFileSync(path.join(outputFolder, outputFile), JSON.stringify(report, null, '\t'))
 }
 
-export function writeFromAllureFolderToCtrf(
-  allureFolder: string,
-  options: Partial<AllureConvertionOptions> = {}
-): void {
+export function writeFromAllureFolderToCtrf(allureFolder: string, options: Partial<AllureConvertionOptions> = {}): void {
   const { outputFolder, outputFile } = { ...defaultOptions, ...options }
   const ctrfTests = convertAllureResultsFromFolder(allureFolder)
   const report = createReport(ctrfTests)
