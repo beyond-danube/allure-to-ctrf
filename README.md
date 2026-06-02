@@ -66,7 +66,7 @@ By standardizing test results, reports can be validated, merged, compared, and a
 
 ## Usage
 
-This package can be used via the CLI.
+This package can be used via the CLI or programmatically.
 
 ## CLI Usage
 
@@ -94,6 +94,17 @@ Convert Allure Report to a specified output file:
 
 ```sh
 npx allure-to-ctrf path/to/allure-results -o report -f combined-report.json
+```
+
+### Programmatic usage
+```
+npm i allure-to-ctrf
+```
+
+```typescript
+import { writeFromAllureFolderToCtrf } from 'allure-to-ctrf'
+
+writeFromAllureFolderToCtrf('path/to/allure/folder)
 ```
 
 ## What is CTRF?
